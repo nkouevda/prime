@@ -18,4 +18,4 @@ $(TARGET): $(SOURCES)
 	$(CC) $(CFLAGS) -o $(TARGET) $(SOURCES)
 
 clean:
-	rm -r $(TARGET)
+	rm $(TARGET)
