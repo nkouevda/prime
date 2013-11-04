@@ -10,7 +10,8 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-  int i, n;
+  int i;
+  long n;
   char *endptr;
   string usage = "usage: prime [-h] number ...";
 
