@@ -1,6 +1,7 @@
 // Nikita Kouevda
 // 2013/11/04
 
+#include <cstdlib>
 #include <iostream>
 
 #include "prime.hpp"
