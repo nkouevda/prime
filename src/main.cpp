@@ -28,16 +28,11 @@ int main(int argc, char *argv[]) {
 
     if (*endptr) {
       cerr << "prime: illegal argument: " << argv[i] << endl;
-      continue;
+    } else if (isPrime(n)) {
+      cout << argv[i] << " is prime" << endl;
+    } else {
+      cout << argv[i] << " is not prime" << endl;
     }
-
-    cout << argv[i] << " is";
-
-    if (!isPrime(n)) {
-      cout << " not";
-    }
-
-    cout << " prime" << endl;
   }
 
   return 0;
