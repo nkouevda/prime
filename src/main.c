@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
   uint64_t num;
 
   for (i = 1; i < argc; ++i) {
-    num = strtoul(argv[i], &endptr, 10);
+    num = strtoull(argv[i], &endptr, 10);
 
     if (*endptr) {
       fprintf(stderr, "prime: illegal argument: %s\n", argv[i]);
