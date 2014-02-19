@@ -1,12 +1,12 @@
 # Nikita Kouevda
-# 2013/11/01
+# 2014/02/18
 
 # Compiler and options
-CC := g++
+CC := gcc
 CFLAGS := -Wall -O2
 
 # Sources and targets
-SOURCES := $(wildcard src/*.cpp)
+SOURCES := $(wildcard src/*.c)
 TARGET := bin/prime
 
 # Phony targets
