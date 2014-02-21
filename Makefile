@@ -1,9 +1,9 @@
 # Nikita Kouevda
-# 2014/02/18
+# 2014/02/20
 
 # Compiler and options
 CC := gcc
-CFLAGS := -Wall -O2
+CFLAGS := -Wall -Wextra -Werror -pedantic-errors -O2
 
 # Sources and targets
 SOURCES := $(wildcard src/*.c)
@@ -18,4 +18,4 @@ $(TARGET): $(SOURCES)
 	$(CC) $(CFLAGS) -o $(TARGET) $(SOURCES)
 
 clean:
-	rm $(TARGET)
+	rm -f $(TARGET)
