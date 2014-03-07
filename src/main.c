@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/02/21
+// 2014/03/06
 
 #include <stdint.h>
 #include <stdio.h>
@@ -10,6 +10,9 @@
 
 int main(int argc, char *argv[]) {
     const char *usage = "usage: prime [-h] number ...";
+    char *endptr;
+    int i;
+    uint64_t num;
 
     if (argc < 2) {
         fprintf(stderr, "%s\n", usage);
@@ -19,14 +22,10 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
-    char *endptr;
-    int i;
-    uint64_t num;
-
     for (i = 1; i < argc; ++i) {
         num = strtoull(argv[i], &endptr, 10);
 
-        if (*endptr) {
+        if (*endptr != NULL) {
             fprintf(stderr, "prime: illegal argument: %s\n", argv[i]);
         } else if (is_prime(num)) {
             printf("%s is prime\n", argv[i]);
