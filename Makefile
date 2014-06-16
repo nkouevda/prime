@@ -1,9 +1,9 @@
 # Nikita Kouevda
-# 2014/02/20
+# 2014/06/15
 
 # Compiler and options
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -pedantic-errors -O2
+CFLAGS := -std=c99 -Wall -Wextra -Werror -pedantic-errors -O2
 
 # Sources and targets
 SOURCES := $(wildcard src/*.c)
