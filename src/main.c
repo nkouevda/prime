@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/10/15
+// 2014/10/16
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -23,7 +23,8 @@ int main(int argc, char *argv[]) {
       if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
         printf("%s\n", usage);
         return 0;
-      } else if (strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--verbose") == 0) {
+      } else if (
+          strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--verbose") == 0) {
         verbose = true;
         continue;
       } else if (strcmp(argv[i], "--") == 0) {
