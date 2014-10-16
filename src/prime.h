@@ -1,11 +1,12 @@
 // Nikita Kouevda
-// 2014/02/21
+// 2014/10/15
 
 #ifndef PRIME_H
 #define PRIME_H
 
+#include <stdbool.h>
 #include <stdint.h>
 
-uint8_t is_prime(const uint64_t num);
+bool is_prime(const uint64_t num);
 
 #endif
