@@ -1,27 +1,35 @@
 <!-- Nikita Kouevda -->
-<!-- 2013/11/01 -->
+<!-- 2014/10/15 -->
 
 # prime
 
 Command-line prime checking.
 
-## Usage
+## Compilation
 
 To compile:
 
     make
 
-To run:
-
-    ./bin/prime
-
 To clean up:
 
     make clean
 
+## Usage
+    
+    prime [-h|--help] [-v|--verbose] [--] number ...
+
 ## Examples
 
-    ./bin/prime 1 2 3 1234567891
+    $ ./bin/prime {1..10}
+    2
+    3
+    5
+    7
+
+    $ ./bin/prime -v 4321 1234567891
+    4321 is not prime
+    1234567891 is prime
 
 ## License
 
