@@ -48,8 +48,7 @@ int main(int argc, char *argv[]) {
   }
 
   if (!has_args) {
-    fprintf(stderr, "%s\n", "prime: missing arguments");
-    fprintf(stderr, "%s\n", usage);
+    fprintf(stderr, "%s\n%s\n", "prime: missing arguments", usage);
     return 1;
   }
 
