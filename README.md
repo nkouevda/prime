@@ -1,5 +1,5 @@
 <!-- Nikita Kouevda -->
-<!-- 2014/10/15 -->
+<!-- 2014/12/13 -->
 
 # prime
 
@@ -16,20 +16,36 @@ To clean up:
     make clean
 
 ## Usage
-    
-    prime [-h|--help] [-v|--verbose] [--] number ...
+
+    prime [-h|--help]
+    prime [-v|--verbose] [--] num ...
+    prime [-v|--verbose] [-r|--range] min max
 
 ## Examples
 
-    $ ./bin/prime {1..10}
-    2
-    3
-    5
-    7
+```bash
+$ ./bin/prime {1..10}
+2
+3
+5
+7
+```
 
-    $ ./bin/prime -v 4321 1234567891
-    4321 is not prime
-    1234567891 is prime
+```bash
+$ ./bin/prime -v 4321 1234567891
+4321 is not prime
+1234567891 is prime
+```
+
+```bash
+$ ./bin/prime -r 0 100000000
+5761455
+```
+
+```bash
+$ ./bin/prime -v -r 250 750
+primes between 250 and 750: 79
+```
 
 ## License
 
