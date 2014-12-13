@@ -44,7 +44,7 @@ $ ./bin/prime -r 0 100000000
 
 ```bash
 $ ./bin/prime -v -r 250 750
-primes between 250 and 750: 79
+primes in [250, 750): 79
 ```
 
 ## License
