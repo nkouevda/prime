@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/10/16
+// 2014/12/12
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -10,7 +10,7 @@
 #include "prime.h"
 
 int main(int argc, char *argv[]) {
-  const char *usage = "usage: prime [-h|--help] [-v|--verbose] [--] number ...";
+  const char *usage = "usage: %s [-h|--help] [-v|--verbose] [--] number ...\n";
   bool verbose = false;
   bool end_opts = false;
   bool has_args = false;
@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
   for (i = 1; i < argc; ++i) {
     if (!end_opts) {
       if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
-        printf("%s\n", usage);
+        printf(usage, argv[0]);
         return 0;
       } else if (
           strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--verbose") == 0) {
@@ -49,7 +49,8 @@ int main(int argc, char *argv[]) {
   }
 
   if (!has_args) {
-    fprintf(stderr, "%s\n%s\n", "prime: missing arguments", usage);
+    fprintf(stderr, "%s: missing arguments\n", argv[0]);
+    fprintf(stderr, usage, argv[0]);
     return 1;
   }
 
