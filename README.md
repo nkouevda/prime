@@ -23,7 +23,7 @@ To clean up:
 
 ## Examples
 
-```bash
+```
 $ ./bin/prime {1..10}
 2
 3
@@ -31,18 +31,18 @@ $ ./bin/prime {1..10}
 7
 ```
 
-```bash
+```
 $ ./bin/prime -v 4321 1234567891
 4321 is not prime
 1234567891 is prime
 ```
 
-```bash
+```
 $ ./bin/prime -r 0 100000000
 5761455
 ```
 
-```bash
+```
 $ ./bin/prime -v -r 250 750
 primes in [250, 750): 79
 ```
