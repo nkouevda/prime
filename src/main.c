@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
   return (opt_range ? range : check)(argc, argv, optind, opt_stat);
 }
 
-int check(int argc, char *argv[], const int optind, const bool stat) {
+int check(int argc, char *argv[], const int optind, const bool opt_stat) {
   int i;
   char *endptr;
   uint64_t num;
@@ -73,19 +73,19 @@ int check(int argc, char *argv[], const int optind, const bool stat) {
 
     if (is_prime(num)) {
       ++count;
-      if (!stat) {
+      if (!opt_stat) {
         printf("%s\n", argv[i]);
       }
     }
   }
 
-  if (stat) {
+  if (opt_stat) {
     printf("%llu of %llu (%f%%)\n", count, total, 1.0 * count / total);
   }
   return 0;
 }
 
-int range(int argc, char *argv[], const int optind, const bool stat) {
+int range(int argc, char *argv[], const int optind, const bool opt_stat) {
   char *endptr;
   uint64_t min;
   uint64_t max;
@@ -116,12 +116,12 @@ int range(int argc, char *argv[], const int optind, const bool stat) {
     return 1;
   }
 
-  count = prime_range(stat ? NULL : stdout, min, max);
+  count = prime_range(opt_stat ? NULL : stdout, min, max);
   if (count == U64_MAX) {
     fprintf(stderr, "%s: unexpected error\n", argv[0]);
     return 1;
   }
-  if (stat) {
+  if (opt_stat) {
     total = max - min;
     printf("%llu of %llu (%f%%) in [%s, %s)\n",
            count, total, 1.0 * count / total, argv[optind], argv[optind + 1]);
