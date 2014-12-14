@@ -121,7 +121,7 @@ int range(int argc, char *argv[], const int optind, const bool opt_stat) {
   }
 
   count = prime_range(opt_stat ? NULL : stdout, min, max);
-  if (count == U64_MAX) {
+  if (count == UINT64_MAX) {
     fprintf(stderr, "%s: unexpected error\n", argv[0]);
     return 1;
   }

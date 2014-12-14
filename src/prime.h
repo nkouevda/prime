@@ -8,8 +8,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#define U64_MAX 0xffffffffffffffffULL
-#define U64_MSB 0x8000000000000000ULL
+#define UINT64_MSB 0x8000000000000000ULL
 
 bool is_prime(const uint64_t num);
 

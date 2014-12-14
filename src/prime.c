@@ -42,12 +42,12 @@ uint64_t prime_range(FILE *stream, const uint64_t min, const uint64_t max) {
 
   primes = malloc(primes_size);
   if (primes == NULL) {
-    return U64_MAX;
+    return UINT64_MAX;
   }
-  memset(primes, U64_MAX, primes_size);
+  memset(primes, UINT64_MAX, primes_size);
 
   for (i = 1; i < max_sqrt; ++i) {
-    if (*(primes + (i >> 6)) & (U64_MSB >> (i % 64))) {
+    if (*(primes + (i >> 6)) & (UINT64_MSB >> (i % 64))) {
       if (i + 1 >= min) {
         ++count;
         if (stream != NULL) {
@@ -56,13 +56,13 @@ uint64_t prime_range(FILE *stream, const uint64_t min, const uint64_t max) {
       }
       // i * (i + 2) == (i + 1) * (i + 1) - 1
       for (j = i * (i + 2); j < max; j += i + 1) {
-        *(primes + (j >> 6)) &= ~(U64_MSB >> (j % 64));
+        *(primes + (j >> 6)) &= ~(UINT64_MSB >> (j % 64));
       }
     }
   }
 
   for (i = (min > max_sqrt + 1) ? min - 1 : max_sqrt; i < max - 1; ++i) {
-    if (*(primes + (i >> 6)) & (U64_MSB >> (i % 64))) {
+    if (*(primes + (i >> 6)) & (UINT64_MSB >> (i % 64))) {
       ++count;
       if (stream != NULL) {
         fprintf(stream, "%llu\n", i + 1);
