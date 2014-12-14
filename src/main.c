@@ -93,7 +93,7 @@ int range(int argc, char *argv[], const int optind, const bool opt_stat) {
   uint64_t count;
 
   if (optind + 1 >= argc) {
-    fprintf(stderr, "%s: insufficient arguments\n", argv[0]);
+    fprintf(stderr, "%s: too few arguments\n", argv[0]);
     usage(stderr, argv[0]);
     return 1;
   } else if (optind + 2 < argc) {
@@ -114,6 +114,10 @@ int range(int argc, char *argv[], const int optind, const bool opt_stat) {
     fprintf(stderr, "%s: illegal argument: %s\n", argv[0], argv[optind + 1]);
     usage(stderr, argv[0]);
     return 1;
+  } else if (min > max) {
+    fprintf(stderr, "%s: min must be <= max\n", argv[0]);
+    usage(stderr, argv[0]);
+    return 1;
   }
 
   count = prime_range(opt_stat ? NULL : stdout, min, max);
@@ -121,6 +125,7 @@ int range(int argc, char *argv[], const int optind, const bool opt_stat) {
     fprintf(stderr, "%s: unexpected error\n", argv[0]);
     return 1;
   }
+
   if (opt_stat) {
     total = max - min;
     printf("%llu of %llu (%f%%) in [%s, %s)\n",
