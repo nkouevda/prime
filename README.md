@@ -18,13 +18,26 @@ To clean up:
 ## Usage
 
     prime [-h|--help]
-    prime [-v|--verbose] [--] num ...
-    prime [-v|--verbose] [-r|--range] min max
+    prime [-s|--stat] [--] num ...
+    prime [-s|--stat] [-r|--range] min max
 
 ## Examples
 
 ```
-$ ./bin/prime {1..10}
+$ ./bin/prime 1 2 3 4 17 18 19
+2
+3
+17
+19
+```
+
+```
+$ ./bin/prime -s 1 2 3 4 17 18 19
+4 of 7 (0.571429%)
+```
+
+```
+$ ./bin/prime -r 0 10
 2
 3
 5
@@ -32,19 +45,8 @@ $ ./bin/prime {1..10}
 ```
 
 ```
-$ ./bin/prime -v 4321 1234567891
-4321 is not prime
-1234567891 is prime
-```
-
-```
-$ ./bin/prime -r 0 100000000
-5761455
-```
-
-```
-$ ./bin/prime -v -r 250 750
-primes in [250, 750): 79
+$ ./bin/prime -rs 0 1000000
+78498 of 1000000 (0.078498%) in [0, 1000000)
 ```
 
 ## License

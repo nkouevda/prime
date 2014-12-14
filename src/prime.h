@@ -6,9 +6,13 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include <stdio.h>
+
+#define U64_MAX 0xffffffffffffffffULL
+#define U64_MSB 0x8000000000000000ULL
 
 bool is_prime(const uint64_t num);
 
-uint64_t prime_range_count(const uint64_t min, const uint64_t max);
+uint64_t prime_range(FILE *stream, const uint64_t min, const uint64_t max);
 
 #endif

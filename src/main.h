@@ -11,6 +11,8 @@ void usage(FILE *stream, const char *prog);
 
 int main(int argc, char *argv[]);
 
-int range(int argc, char *argv[], int optind, bool verbose);
+int check(int argc, char *argv[], const int optind, const bool stat);
+
+int range(int argc, char *argv[], const int optind, const bool stat);
 
 #endif
