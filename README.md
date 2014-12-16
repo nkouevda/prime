@@ -1,5 +1,5 @@
 <!-- Nikita Kouevda -->
-<!-- 2014/12/14 -->
+<!-- 2014/12/15 -->
 
 # prime
 
@@ -19,7 +19,7 @@ To clean up:
 
     usage: prime [-h|--help]
            prime [-s|--stat] [--] num ...
-           prime [-s|--stat] [-r|--range] min max
+           prime [-s|--stat] [-r|--range] start stop
 
 ## Examples
 
@@ -36,7 +36,7 @@ Only print stats about the given numbers' primeness:
     $ ./bin/prime -s 1 2 3 4 17 18 19
     4 of 7 (0.571429%)
 
-Find all primes in the range `[min, max)`:
+Find all primes in the range `[start, stop)`:
 
     $ ./bin/prime -r 0 10
     2

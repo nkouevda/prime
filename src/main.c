@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/12/13
+// 2014/12/15
 
 #include <getopt.h>
 #include <stdbool.h>
@@ -21,7 +21,7 @@ static struct option long_options[] = {
 void usage(FILE *stream, const char *prog) {
   fprintf(stream, "usage: %s [-h|--help]\n", prog);
   fprintf(stream, "       %s [-s|--stat] [--] num ...\n", prog);
-  fprintf(stream, "       %s [-s|--stat] [-r|--range] min max\n", prog);
+  fprintf(stream, "       %s [-s|--stat] [-r|--range] start stop\n", prog);
 }
 
 int main(int argc, char *argv[]) {
@@ -87,8 +87,8 @@ int check(int argc, char *argv[], const int optind, const bool opt_stat) {
 
 int range(int argc, char *argv[], const int optind, const bool opt_stat) {
   char *endptr;
-  uint64_t min;
-  uint64_t max;
+  uint64_t start;
+  uint64_t stop;
   uint64_t total;
   uint64_t count;
 
@@ -102,32 +102,32 @@ int range(int argc, char *argv[], const int optind, const bool opt_stat) {
     return 1;
   }
 
-  min = strtoull(argv[optind], &endptr, 10);
+  start = strtoull(argv[optind], &endptr, 10);
   if (*endptr != '\0') {
     fprintf(stderr, "%s: illegal argument: %s\n", argv[0], argv[optind]);
     usage(stderr, argv[0]);
     return 1;
   }
 
-  max = strtoull(argv[optind + 1], &endptr, 10);
+  stop = strtoull(argv[optind + 1], &endptr, 10);
   if (*endptr != '\0') {
     fprintf(stderr, "%s: illegal argument: %s\n", argv[0], argv[optind + 1]);
     usage(stderr, argv[0]);
     return 1;
-  } else if (min > max) {
-    fprintf(stderr, "%s: min must be <= max\n", argv[0]);
+  } else if (start > stop) {
+    fprintf(stderr, "%s: start must be <= stop\n", argv[0]);
     usage(stderr, argv[0]);
     return 1;
   }
 
-  count = prime_range(opt_stat ? NULL : stdout, min, max);
+  count = prime_range(opt_stat ? NULL : stdout, start, stop);
   if (count == UINT64_MAX) {
     fprintf(stderr, "%s: unexpected error\n", argv[0]);
     return 1;
   }
 
   if (opt_stat) {
-    total = max - min;
+    total = stop - start;
     printf("%llu of %llu (%f%%) in [%s, %s)\n",
            count, total, 1.0 * count / total, argv[optind], argv[optind + 1]);
   }

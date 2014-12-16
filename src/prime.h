@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/12/13
+// 2014/12/15
 
 #ifndef PRIME_H
 #define PRIME_H
@@ -12,6 +12,6 @@
 
 bool is_prime(const uint64_t num);
 
-uint64_t prime_range(FILE *stream, const uint64_t min, const uint64_t max);
+uint64_t prime_range(FILE *stream, const uint64_t start, const uint64_t stop);
 
 #endif

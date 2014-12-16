@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/12/13
+// 2014/12/15
 
 #include <math.h>
 #include <stdbool.h>
@@ -31,11 +31,11 @@ bool is_prime(const uint64_t num) {
   return true;
 }
 
-uint64_t prime_range(FILE *stream, const uint64_t min, const uint64_t max) {
+uint64_t prime_range(FILE *stream, const uint64_t start, const uint64_t stop) {
   uint64_t *primes;
-  // Smallest x divisible by 8 such that 8 * x >= max
-  uint64_t primes_size = (((max - 1) | 63) + 1) >> 3;
-  uint64_t max_sqrt = sqrt(max);
+  // Smallest x divisible by 8 such that 8 * x >= stop
+  uint64_t primes_size = (((stop - 1) | 63) + 1) >> 3;
+  uint64_t stop_sqrt = sqrt(stop);
   uint64_t count = 0;
   uint64_t i;
   uint64_t j;
@@ -46,22 +46,22 @@ uint64_t prime_range(FILE *stream, const uint64_t min, const uint64_t max) {
   }
   memset(primes, UINT64_MAX, primes_size);
 
-  for (i = 1; i < max_sqrt; ++i) {
+  for (i = 1; i < stop_sqrt; ++i) {
     if (*(primes + (i >> 6)) & (UINT64_MSB >> (i % 64))) {
-      if (i + 1 >= min) {
+      if (i + 1 >= start) {
         ++count;
         if (stream != NULL) {
           fprintf(stream, "%llu\n", i + 1);
         }
       }
       // i * (i + 2) == (i + 1) * (i + 1) - 1
-      for (j = i * (i + 2); j < max; j += i + 1) {
+      for (j = i * (i + 2); j < stop; j += i + 1) {
         *(primes + (j >> 6)) &= ~(UINT64_MSB >> (j % 64));
       }
     }
   }
 
-  for (i = (min > max_sqrt + 1) ? min - 1 : max_sqrt; i < max - 1; ++i) {
+  for (i = (start > stop_sqrt + 1) ? start - 1 : stop_sqrt; i < stop - 1; ++i) {
     if (*(primes + (i >> 6)) & (UINT64_MSB >> (i % 64))) {
       ++count;
       if (stream != NULL) {
