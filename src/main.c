@@ -74,7 +74,7 @@ int check(int argc, char *argv[], const int optind, const bool opt_stat) {
     if (is_prime(num)) {
       ++count;
       if (!opt_stat) {
-        printf("%s\n", argv[i]);
+        printf("%llu\n", num);
       }
     }
   }
@@ -133,8 +133,8 @@ int range(int argc, char *argv[], const int optind, const bool opt_stat) {
 
   if (opt_stat) {
     total = stop - start;
-    printf("%llu of %llu (%f%%) in [%s, %s)\n",
-           count, total, 1.0 * count / total, argv[optind], argv[optind + 1]);
+    printf("%llu of %llu (%f%%) in [%llu, %llu)\n",
+           count, total, 1.0 * count / total, start, stop);
   }
   return 0;
 }
