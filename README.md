@@ -19,7 +19,7 @@ To clean up:
 
     usage: prime [-h|--help]
            prime [-s|--stat] [--] num ...
-           prime [-s|--stat] [-r|--range] start stop
+           prime [-s|--stat] [-r|--range] [start] stop
 
 ## Examples
 
@@ -44,9 +44,9 @@ Find all primes in the range `[start, stop)`:
     5
     7
 
-Only print stats about the given range:
+Only print stats about the given range (`start` defaults to `0`):
 
-    $ ./bin/prime -rs 0 1000000
+    $ ./bin/prime -rs 1000000
     78498 of 1000000 (0.078498%) in [0, 1000000)
 
 ## License

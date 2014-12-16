@@ -21,7 +21,7 @@ static struct option long_options[] = {
 void usage(FILE *stream, const char *prog) {
   fprintf(stream, "usage: %s [-h|--help]\n", prog);
   fprintf(stream, "       %s [-s|--stat] [--] num ...\n", prog);
-  fprintf(stream, "       %s [-s|--stat] [-r|--range] start stop\n", prog);
+  fprintf(stream, "       %s [-s|--stat] [-r|--range] [start] stop\n", prog);
 }
 
 int main(int argc, char *argv[]) {
@@ -92,8 +92,8 @@ int range(int argc, char *argv[], const int optind, const bool opt_stat) {
   uint64_t total;
   uint64_t count;
 
-  if (optind + 1 >= argc) {
-    fprintf(stderr, "%s: too few arguments\n", argv[0]);
+  if (optind >= argc) {
+    fprintf(stderr, "%s: missing arguments\n", argv[0]);
     usage(stderr, argv[0]);
     return 1;
   } else if (optind + 2 < argc) {
@@ -109,15 +109,20 @@ int range(int argc, char *argv[], const int optind, const bool opt_stat) {
     return 1;
   }
 
-  stop = strtoull(argv[optind + 1], &endptr, 10);
-  if (*endptr != '\0') {
-    fprintf(stderr, "%s: illegal argument: %s\n", argv[0], argv[optind + 1]);
-    usage(stderr, argv[0]);
-    return 1;
-  } else if (start > stop) {
-    fprintf(stderr, "%s: start must be <= stop\n", argv[0]);
-    usage(stderr, argv[0]);
-    return 1;
+  if (optind + 1 == argc) {
+    stop = start;
+    start = 0;
+  } else {
+    stop = strtoull(argv[optind + 1], &endptr, 10);
+    if (*endptr != '\0') {
+      fprintf(stderr, "%s: illegal argument: %s\n", argv[0], argv[optind + 1]);
+      usage(stderr, argv[0]);
+      return 1;
+    } else if (start > stop) {
+      fprintf(stderr, "%s: start must be <= stop\n", argv[0]);
+      usage(stderr, argv[0]);
+      return 1;
+    }
   }
 
   count = prime_range(opt_stat ? NULL : stdout, start, stop);
