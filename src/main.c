@@ -21,7 +21,7 @@ static struct option long_options[] = {
 void usage(FILE *stream, const char *prog) {
   fprintf(stream, "usage: %s [-h|--help]\n", prog);
   fprintf(stream, "       %s [-s|--stat] [--] num ...\n", prog);
-  fprintf(stream, "       %s [-s|--stat] [-r|--range] [start] stop\n", prog);
+  fprintf(stream, "       %s [-s|--stat] -r|--range [start] stop\n", prog);
 }
 
 int main(int argc, char *argv[]) {

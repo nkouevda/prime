@@ -19,7 +19,7 @@ To clean up:
 
     usage: prime [-h|--help]
            prime [-s|--stat] [--] num ...
-           prime [-s|--stat] [-r|--range] [start] stop
+           prime [-s|--stat] -r|--range [start] stop
 
 ## Examples
 
