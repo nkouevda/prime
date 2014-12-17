@@ -3,9 +3,6 @@
 
 #include <stdio.h>
 
-#include "main.h"
-#include "prime.h"
-
 void usage(FILE *stream, const char *prog) {
   fprintf(stream, "usage: %s [-h|--help]\n", prog);
   fprintf(stream, "       %s [-s|--stat] [--] <num>...\n", prog);
