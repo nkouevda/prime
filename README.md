@@ -1,5 +1,5 @@
 <!-- Nikita Kouevda -->
-<!-- 2014/12/15 -->
+<!-- 2014/12/16 -->
 
 # prime
 
@@ -17,9 +17,34 @@ To clean up:
 
 ## Usage
 
-    usage: prime [-h|--help]
-           prime [-s|--stat] [--] num ...
-           prime [-s|--stat] -r|--range [start] stop
+```
+prime - Prime checker and finder
+
+usage: prime [-h|--help]
+       prime [-s|--stat] [--] <num>...
+       prime [-s|--stat] -r|--range [<start>] <stop>
+
+prime [-h|--help]
+
+    Show this help message and exit.
+
+prime [-s|--stat] [--] <num>...
+
+    Print each prime number of the given numbers. If --stat is specified,
+    instead of printing each prime number, output stats in the following format,
+    where P is the number of primes and T is the number of numbers:
+
+        P of T (P/T%)
+
+prime [-s|--stat] -r|--range [<start>] <stop>
+
+    Print all primes between <start> (inclusive) and <stop> (exclusive). If not
+    specified, <start> defaults to 0. If --stat is specified, instead of
+    printing all prime numbers in the given range, output stats in the following
+    format, where P is the number of primes and T is the number of numbers:
+
+        P of T (P/T%) in [<start>, <stop>)
+```
 
 ## Examples
 
@@ -38,11 +63,10 @@ Only print stats about the given numbers' primeness:
 
 Find all primes in the range `[start, stop)`:
 
-    $ ./bin/prime -r 0 10
+    $ ./bin/prime -r 2 7
     2
     3
     5
-    7
 
 Only print stats about the given range (`start` defaults to `0`):
 

@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/12/15
+// 2014/12/16
 
 #include <getopt.h>
 #include <stdbool.h>
@@ -10,6 +10,7 @@
 
 #include "main.h"
 #include "prime.h"
+#include "usage.h"
 
 static struct option long_options[] = {
     {"help", no_argument, NULL, 'h'},
@@ -17,12 +18,6 @@ static struct option long_options[] = {
     {"stat", no_argument, NULL, 'v'},
     {NULL, 0, NULL, 0}
 };
-
-void usage(FILE *stream, const char *prog) {
-  fprintf(stream, "usage: %s [-h|--help]\n", prog);
-  fprintf(stream, "       %s [-s|--stat] [--] num ...\n", prog);
-  fprintf(stream, "       %s [-s|--stat] -r|--range [start] stop\n", prog);
-}
 
 int main(int argc, char *argv[]) {
   int opt;
@@ -32,7 +27,7 @@ int main(int argc, char *argv[]) {
   while ((opt = getopt_long(argc, argv, "hrs", long_options, NULL)) != -1) {
     switch (opt) {
       case 'h':
-        usage(stdout, argv[0]);
+        help(stdout, argv[0]);
         return 0;
       case 'r':
         opt_range = true;

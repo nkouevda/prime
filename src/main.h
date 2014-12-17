@@ -1,13 +1,10 @@
 // Nikita Kouevda
-// 2014/12/13
+// 2014/12/16
 
 #ifndef MAIN_H
 #define MAIN_H
 
 #include <stdbool.h>
-#include <stdio.h>
-
-void usage(FILE *stream, const char *prog);
 
 int main(int argc, char *argv[]);
 
