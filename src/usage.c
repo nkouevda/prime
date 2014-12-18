@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/12/16
+// 2014/12/17
 
 #include <stdio.h>
 
@@ -9,10 +9,10 @@ void usage(FILE *stream, const char *prog) {
   fprintf(stream, "       %s [-s|--stat] -r|--range [<start>] <stop>\n", prog);
 }
 
-void help(FILE *stream, const char *prog) {
-  fprintf(stream, "%s - Prime checker and finder\n\n", prog);
-  usage(stream, prog);
-  fprintf(stream,
+void help(const char *prog) {
+  printf("%s - Prime checker and finder\n\n", prog);
+  usage(stdout, prog);
+  printf(
 "\n"
 "prime [-h|--help]\n"
 "\n"

@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/12/16
+// 2014/12/17
 
 #ifndef USAGE_H
 #define USAGE_H
@@ -8,6 +8,6 @@
 
 void usage(FILE *stream, const char *prog);
 
-void help(FILE *stream, const char *prog);
+void help(const char *prog);
 
 #endif

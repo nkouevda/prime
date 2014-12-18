@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/12/16
+// 2014/12/17
 
 #include <getopt.h>
 #include <stdbool.h>
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
   while ((opt = getopt_long(argc, argv, "hrs", long_options, NULL)) != -1) {
     switch (opt) {
       case 'h':
-        help(stdout, argv[0]);
+        help(argv[0]);
         return 0;
       case 'r':
         opt_range = true;
