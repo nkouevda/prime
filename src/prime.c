@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/12/15
+// 2014/12/17
 
 #include <math.h>
 #include <stdbool.h>
@@ -47,7 +47,7 @@ uint64_t prime_range(FILE *stream, const uint64_t start, const uint64_t stop) {
   memset(primes, UINT64_MAX, primes_size);
 
   for (i = 1; i < stop_sqrt; ++i) {
-    if (*(primes + (i >> 6)) & (UINT64_MSB >> (i % 64))) {
+    if (*(primes + (i >> 6)) & (1ULL << (i % 64))) {
       if (i + 1 >= start) {
         ++count;
         if (stream != NULL) {
@@ -56,13 +56,13 @@ uint64_t prime_range(FILE *stream, const uint64_t start, const uint64_t stop) {
       }
       // i * (i + 2) == (i + 1) * (i + 1) - 1
       for (j = i * (i + 2); j < stop; j += i + 1) {
-        *(primes + (j >> 6)) &= ~(UINT64_MSB >> (j % 64));
+        *(primes + (j >> 6)) &= ~(1ULL << (j % 64));
       }
     }
   }
 
   for (i = (start > stop_sqrt + 1) ? start - 1 : stop_sqrt; i < stop - 1; ++i) {
-    if (*(primes + (i >> 6)) & (UINT64_MSB >> (i % 64))) {
+    if (*(primes + (i >> 6)) & (1ULL << (i % 64))) {
       ++count;
       if (stream != NULL) {
         fprintf(stream, "%llu\n", i + 1);

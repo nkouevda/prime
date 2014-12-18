@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/12/15
+// 2014/12/17
 
 #ifndef PRIME_H
 #define PRIME_H
@@ -7,8 +7,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
-
-#define UINT64_MSB 0x8000000000000000ULL
 
 bool is_prime(const uint64_t num);
 
