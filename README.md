@@ -11,6 +11,10 @@ To compile:
 
     make
 
+To test:
+
+    make test
+
 To clean up:
 
     make clean
@@ -50,7 +54,7 @@ prime [-s|--short] -r|--range [<start>] <stop>
 
 Check whether the given numbers are prime:
 
-    $ ./bin/prime 1 2 3 4 17 18 19
+    $ bin/prime 1 2 3 4 17 18 19
     2
     3
     17
@@ -58,19 +62,19 @@ Check whether the given numbers are prime:
 
 Print a summary about the given numbers' primeness:
 
-    $ ./bin/prime -s 1 2 3 4 17 18 19
+    $ bin/prime -s 1 2 3 4 17 18 19
     4 of 7 (57.142857%)
 
 Find all primes in the range `[start, stop)`:
 
-    $ ./bin/prime -r 2 7
+    $ bin/prime -r 2 7
     2
     3
     5
 
 Print a summary about the given range (`start` defaults to `0`):
 
-    $ ./bin/prime -rs 1000000
+    $ bin/prime -rs 1000000
     78498 of 1000000 (7.849800%) in [0, 1000000)
 
 ## License

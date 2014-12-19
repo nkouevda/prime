@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Nikita Kouevda
+# 2014/12/19
+
+bin/prime -s 1 2 3 4 17 18 19

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Nikita Kouevda
+# 2014/12/19
+
+# Switch to parent directory of location of script
+cd "$(dirname "$BASH_SOURCE")/.."
+
+tests=(
+    check
+    check_short
+    range
+    range_short
+)
+errors=0
+
+for t in "${tests[@]}"; do
+  printf "%s...\n" "$t"
+  diff "test/$t.out" <("test/$t") || (( ++errors ))
+done
+
+if (( errors )); then
+  printf "Failed %d of %d\n" "$errors" "${#tests[@]}"
+  exit 1
+fi

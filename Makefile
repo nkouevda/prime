@@ -1,5 +1,5 @@
 # Nikita Kouevda
-# 2014/06/15
+# 2014/12/19
 
 # Compiler and options
 CC := gcc
@@ -10,9 +10,12 @@ SOURCES := $(wildcard src/*.c)
 TARGET := bin/prime
 
 # Phony targets
-.PHONY: all clean
+.PHONY: all test clean
 
 all: $(TARGET)
+
+test: all
+	test/run_tests
 
 $(TARGET): $(SOURCES)
 	$(CC) $(CFLAGS) -o $(TARGET) $(SOURCES)
