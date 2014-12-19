@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/12/18
+// 2014/12/19
 
 #include <getopt.h>
 #include <stdbool.h>
@@ -41,6 +41,12 @@ int main(int argc, char *argv[]) {
     }
   }
 
+  if (optind >= argc) {
+    fprintf(stderr, "%s: missing arguments\n", argv[0]);
+    usage(stderr, argv[0]);
+    return 1;
+  }
+
   return (opt_range ? range : check)(argc, argv, optind, opt_short);
 }
 
@@ -50,12 +56,6 @@ int check(int argc, char *argv[], const int optind, const bool opt_short) {
   uint64_t num;
   uint64_t total = 0;
   uint64_t count = 0;
-
-  if (optind >= argc) {
-    fprintf(stderr, "%s: missing arguments\n", argv[0]);
-    usage(stderr, argv[0]);
-    return 1;
-  }
 
   for (i = optind; i < argc; ++i) {
     num = strtoull(argv[i], &endptr, 10);
@@ -87,11 +87,7 @@ int range(int argc, char *argv[], const int optind, const bool opt_short) {
   uint64_t total;
   uint64_t count;
 
-  if (optind >= argc) {
-    fprintf(stderr, "%s: missing arguments\n", argv[0]);
-    usage(stderr, argv[0]);
-    return 1;
-  } else if (optind + 2 < argc) {
+  if (optind + 2 < argc) {
     fprintf(stderr, "%s: too many arguments\n", argv[0]);
     usage(stderr, argv[0]);
     return 1;
