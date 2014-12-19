@@ -55,8 +55,7 @@ uint64_t prime_range(const uint64_t start, const uint64_t stop,
           printf("%llu\n", i + 1);
         }
       }
-      // i * (i + 2) == (i + 1) * (i + 1) - 1
-      for (j = i * (i + 2); j < stop; j += i + 1) {
+      for (j = (i + 1) * (i + 1) - 1; j < stop; j += i + 1) {
         *(primes + (j >> 6)) &= ~(1ULL << (j % 64));
       }
     }
