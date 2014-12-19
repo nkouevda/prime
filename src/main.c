@@ -75,7 +75,7 @@ int check(int argc, char *argv[], const int optind, const bool opt_short) {
   }
 
   if (opt_short) {
-    printf("%llu of %llu (%f%%)\n", count, total, 1.0 * count / total);
+    printf("%llu of %llu (%f%%)\n", count, total, 100.0 * count / total);
   }
   return 0;
 }
@@ -125,7 +125,7 @@ int range(int argc, char *argv[], const int optind, const bool opt_short) {
   if (opt_short) {
     total = stop - start;
     printf("%llu of %llu (%f%%) in [%llu, %llu)\n",
-           count, total, 1.0 * count / total, start, stop);
+           count, total, 100.0 * count / total, start, stop);
   }
   return 0;
 }
