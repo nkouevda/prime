@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/12/16
+// 2014/12/18
 
 #ifndef MAIN_H
 #define MAIN_H
@@ -8,8 +8,8 @@
 
 int main(int argc, char *argv[]);
 
-int check(int argc, char *argv[], const int optind, const bool opt_stat);
+int check(int argc, char *argv[], const int optind, const bool opt_short);
 
-int range(int argc, char *argv[], const int optind, const bool opt_stat);
+int range(int argc, char *argv[], const int optind, const bool opt_short);
 
 #endif

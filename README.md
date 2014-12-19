@@ -1,5 +1,5 @@
 <!-- Nikita Kouevda -->
-<!-- 2014/12/16 -->
+<!-- 2014/12/18 -->
 
 # prime
 
@@ -21,27 +21,27 @@ To clean up:
 prime - Prime checker and finder
 
 usage: prime [-h|--help]
-       prime [-s|--stat] [--] <num>...
-       prime [-s|--stat] -r|--range [<start>] <stop>
+       prime [-s|--short] [--] <num>...
+       prime [-s|--short] -r|--range [<start>] <stop>
 
 prime [-h|--help]
 
     Show this help message and exit.
 
-prime [-s|--stat] [--] <num>...
+prime [-s|--short] [--] <num>...
 
-    Print each prime number of the given numbers. If --stat is specified,
-    instead of printing each prime number, output stats in the following format,
-    where P is the number of primes and T is the number of numbers:
+    Print each prime number of the given <num>s. If --short is specified,
+    instead of printing each prime number, output a summary in the following
+    format, where P is the number of primes and T is the number of <num>s:
 
         P of T (P/T%)
 
-prime [-s|--stat] -r|--range [<start>] <stop>
+prime [-s|--short] -r|--range [<start>] <stop>
 
     Print all primes between <start> (inclusive) and <stop> (exclusive). If not
-    specified, <start> defaults to 0. If --stat is specified, instead of
-    printing all prime numbers in the given range, output stats in the following
-    format, where P is the number of primes and T is the number of numbers:
+    specified, <start> defaults to 0. If --short is specified, instead of
+    printing each prime number, output a summary in the following format, where
+    P is the number of primes and T is the number of numbers (<stop> - <start>):
 
         P of T (P/T%) in [<start>, <stop>)
 ```
@@ -56,7 +56,7 @@ Check whether the given numbers are prime:
     17
     19
 
-Only print stats about the given numbers' primeness:
+Print a summary about the given numbers' primeness:
 
     $ ./bin/prime -s 1 2 3 4 17 18 19
     4 of 7 (0.571429%)
@@ -68,7 +68,7 @@ Find all primes in the range `[start, stop)`:
     3
     5
 
-Only print stats about the given range (`start` defaults to `0`):
+Print a summary about the given range (`start` defaults to `0`):
 
     $ ./bin/prime -rs 1000000
     78498 of 1000000 (0.078498%) in [0, 1000000)

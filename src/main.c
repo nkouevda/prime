@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/12/17
+// 2014/12/18
 
 #include <getopt.h>
 #include <stdbool.h>
@@ -15,14 +15,14 @@
 static struct option long_options[] = {
     {"help", no_argument, NULL, 'h'},
     {"range", no_argument, NULL, 'r'},
-    {"stat", no_argument, NULL, 'v'},
+    {"short", no_argument, NULL, 's'},
     {NULL, 0, NULL, 0}
 };
 
 int main(int argc, char *argv[]) {
   int opt;
-  bool opt_stat = false;
   bool opt_range = false;
+  bool opt_short = false;
 
   while ((opt = getopt_long(argc, argv, "hrs", long_options, NULL)) != -1) {
     switch (opt) {
@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
         opt_range = true;
         break;
       case 's':
-        opt_stat = true;
+        opt_short = true;
         break;
       case '?':
         usage(stderr, argv[0]);
@@ -41,10 +41,10 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  return (opt_range ? range : check)(argc, argv, optind, opt_stat);
+  return (opt_range ? range : check)(argc, argv, optind, opt_short);
 }
 
-int check(int argc, char *argv[], const int optind, const bool opt_stat) {
+int check(int argc, char *argv[], const int optind, const bool opt_short) {
   int i;
   char *endptr;
   uint64_t num;
@@ -68,19 +68,19 @@ int check(int argc, char *argv[], const int optind, const bool opt_stat) {
 
     if (is_prime(num)) {
       ++count;
-      if (!opt_stat) {
+      if (!opt_short) {
         printf("%llu\n", num);
       }
     }
   }
 
-  if (opt_stat) {
+  if (opt_short) {
     printf("%llu of %llu (%f%%)\n", count, total, 1.0 * count / total);
   }
   return 0;
 }
 
-int range(int argc, char *argv[], const int optind, const bool opt_stat) {
+int range(int argc, char *argv[], const int optind, const bool opt_short) {
   char *endptr;
   uint64_t start;
   uint64_t stop;
@@ -120,13 +120,13 @@ int range(int argc, char *argv[], const int optind, const bool opt_stat) {
     }
   }
 
-  count = prime_range(opt_stat ? NULL : stdout, start, stop);
+  count = prime_range(start, stop, opt_short);
   if (count == UINT64_MAX) {
     fprintf(stderr, "%s: unexpected error\n", argv[0]);
     return 1;
   }
 
-  if (opt_stat) {
+  if (opt_short) {
     total = stop - start;
     printf("%llu of %llu (%f%%) in [%llu, %llu)\n",
            count, total, 1.0 * count / total, start, stop);

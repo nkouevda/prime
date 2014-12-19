@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/12/17
+// 2014/12/18
 
 #include <math.h>
 #include <stdbool.h>
@@ -31,7 +31,8 @@ bool is_prime(const uint64_t num) {
   return true;
 }
 
-uint64_t prime_range(FILE *stream, const uint64_t start, const uint64_t stop) {
+uint64_t prime_range(const uint64_t start, const uint64_t stop,
+                     const bool opt_short) {
   uint64_t *primes;
   // Smallest x divisible by 8 such that 8 * x >= stop
   uint64_t primes_size = (((stop - 1) | 63) + 1) >> 3;
@@ -50,8 +51,8 @@ uint64_t prime_range(FILE *stream, const uint64_t start, const uint64_t stop) {
     if (*(primes + (i >> 6)) & (1ULL << (i % 64))) {
       if (i + 1 >= start) {
         ++count;
-        if (stream != NULL) {
-          fprintf(stream, "%llu\n", i + 1);
+        if (!opt_short) {
+          printf("%llu\n", i + 1);
         }
       }
       // i * (i + 2) == (i + 1) * (i + 1) - 1
@@ -64,8 +65,8 @@ uint64_t prime_range(FILE *stream, const uint64_t start, const uint64_t stop) {
   for (i = (start > stop_sqrt + 1) ? start - 1 : stop_sqrt; i < stop - 1; ++i) {
     if (*(primes + (i >> 6)) & (1ULL << (i % 64))) {
       ++count;
-      if (stream != NULL) {
-        fprintf(stream, "%llu\n", i + 1);
+      if (!opt_short) {
+        printf("%llu\n", i + 1);
       }
     }
   }
