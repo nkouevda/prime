@@ -16,10 +16,10 @@ errors=0
 
 for t in "${tests[@]}"; do
   printf "%s...\n" "$t"
-  diff "test/$t.out" <("test/$t") || (( ++errors ))
+  diff "test/$t.out" <("test/$t") >&2 || (( ++errors ))
 done
 
 if (( errors )); then
-  printf "Failed %d of %d\n" "$errors" "${#tests[@]}"
+  printf "Failed %d of %d\n" "$errors" "${#tests[@]}" >&2
   exit 1
 fi
