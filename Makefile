@@ -14,11 +14,11 @@ TARGET := bin/prime
 
 all: $(TARGET)
 
-test: all
-	test/run_tests
-
 $(TARGET): $(SOURCES)
 	$(CC) $(CFLAGS) -o $(TARGET) $(SOURCES)
+
+test: all
+	test/run_tests
 
 clean:
 	rm -f $(TARGET)
