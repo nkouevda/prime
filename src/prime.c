@@ -62,7 +62,7 @@ uint64_t prime_range(const uint64_t start, const uint64_t stop,
 
   // Jump to start of range if necessary
   if (start > stop_sqrt + 1) {
-    i = start - 1;
+    num = start - 1;
   }
 
   for ( ; num < stop - 1; ++num) {
