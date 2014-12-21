@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/12/19
+// 2014/12/20
 
 #include <math.h>
 #include <stdbool.h>
@@ -36,8 +36,9 @@ uint64_t prime_range(const uint64_t start, const uint64_t stop,
   // Smallest x divisible by 8 such that 8 * x >= stop
   uint64_t primes_size = (((stop - 1) | 63) + 1) >> 3;
   uint64_t count = 0;
+  // NOTE: unlike num in is_prime, num is "zero-indexed" and refers to (num + 1)
+  uint64_t num;
   uint64_t i;
-  uint64_t j;
 
   primes = malloc(primes_size);
   if (primes == NULL) {
@@ -45,25 +46,30 @@ uint64_t prime_range(const uint64_t start, const uint64_t stop,
   }
   memset(primes, UINT64_MAX, primes_size);
 
-  for (i = 1; i < stop_sqrt; ++i) {
-    if (*(primes + (i >> 6)) & (1ULL << (i % 64))) {
-      if (i + 1 >= start) {
+  for (num = 1; num < stop_sqrt; ++num) {
+    if (*(primes + (num >> 6)) & (1ULL << (num % 64))) {
+      if (num + 1 >= start) {
         ++count;
         if (!opt_short) {
-          printf("%llu\n", i + 1);
+          printf("%llu\n", num + 1);
         }
       }
-      for (j = (i + 1) * (i + 1) - 1; j < stop; j += i + 1) {
-        *(primes + (j >> 6)) &= ~(1ULL << (j % 64));
+      for (i = (num + 1) * (num + 1) - 1; i < stop; i += num + 1) {
+        *(primes + (i >> 6)) &= ~(1ULL << (i % 64));
       }
     }
   }
 
-  for (i = (start > stop_sqrt + 1) ? start - 1 : stop_sqrt; i < stop - 1; ++i) {
-    if (*(primes + (i >> 6)) & (1ULL << (i % 64))) {
+  // Jump to start of range if necessary
+  if (start > stop_sqrt + 1) {
+    i = start - 1;
+  }
+
+  for ( ; num < stop - 1; ++num) {
+    if (*(primes + (num >> 6)) & (1ULL << (num % 64))) {
       ++count;
       if (!opt_short) {
-        printf("%llu\n", i + 1);
+        printf("%llu\n", num + 1);
       }
     }
   }
