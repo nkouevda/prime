@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/12/19
+// 2014/12/21
 
 #include <getopt.h>
 #include <stdbool.h>
@@ -12,7 +12,7 @@
 #include "prime.h"
 #include "usage.h"
 
-static struct option long_options[] = {
+static const struct option long_options[] = {
     {"help", no_argument, NULL, 'h'},
     {"range", no_argument, NULL, 'r'},
     {"short", no_argument, NULL, 's'},
@@ -54,12 +54,11 @@ int check(int argc, char *argv[], const int optind, const bool opt_short) {
   int i;
   char *endptr;
   uint64_t num;
-  uint64_t total = 0;
+  uint64_t total;
   uint64_t count = 0;
 
   for (i = optind; i < argc; ++i) {
     num = strtoull(argv[i], &endptr, 10);
-    ++total;
     if (*endptr != '\0') {
       fprintf(stderr, "%s: illegal argument: %s\n", argv[0], argv[i]);
       usage(stderr, argv[0]);
@@ -75,6 +74,7 @@ int check(int argc, char *argv[], const int optind, const bool opt_short) {
   }
 
   if (opt_short) {
+    total = argc - optind;
     printf("%llu of %llu (%f%%)\n", count, total, 100.0 * count / total);
   }
   return 0;
