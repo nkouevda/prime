@@ -12,7 +12,7 @@ void usage(FILE *stream, const char *prog) {
 void help(const char *prog) {
   printf("%s - Prime checker and finder\n\n", prog);
   usage(stdout, prog);
-  printf("\
+  fputs("\
 \n\
 prime [-h|--help]\n\
 \n\
@@ -34,5 +34,5 @@ prime [-s|--short] -r|--range [<start>] <stop>\n\
     P is the number of primes and T is the number of numbers (<stop> - <start>):\n\
 \n\
         P of T (P/T%%) in [<start>, <stop>)\n\
-");
+", stdout);
 }
