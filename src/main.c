@@ -1,7 +1,8 @@
 // Nikita Kouevda
-// 2014/12/21
+// 2014/12/22
 
 #include <getopt.h>
+#include <inttypes.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -68,14 +69,15 @@ int check(int argc, char *argv[], const int optind, const bool opt_short) {
     if (is_prime(num)) {
       ++count;
       if (!opt_short) {
-        printf("%llu\n", num);
+        printf("%" PRIu64 "\n", num);
       }
     }
   }
 
   if (opt_short) {
     total = argc - optind;
-    printf("%llu of %llu (%f%%)\n", count, total, 100.0 * count / total);
+    printf("%" PRIu64 " of %" PRIu64 " (%f%%)\n",
+           count, total, 100.0 * count / total);
   }
   return 0;
 }
@@ -124,7 +126,7 @@ int range(int argc, char *argv[], const int optind, const bool opt_short) {
 
   if (opt_short) {
     total = stop - start;
-    printf("%llu of %llu (%f%%) in [%llu, %llu)\n",
+    printf("%" PRIu64 " of %" PRIu64 " (%f%%) in [%" PRIu64 ", %" PRIu64 ")\n",
            count, total, 100.0 * count / total, start, stop);
   }
   return 0;

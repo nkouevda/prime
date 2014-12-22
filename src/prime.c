@@ -1,6 +1,7 @@
 // Nikita Kouevda
-// 2014/12/20
+// 2014/12/22
 
+#include <inttypes.h>
 #include <math.h>
 #include <stdbool.h>
 #include <stdint.h>
@@ -47,15 +48,15 @@ uint64_t prime_range(const uint64_t start, const uint64_t stop,
   memset(primes, UINT64_MAX, primes_size);
 
   for (num = 1; num < stop_sqrt; ++num) {
-    if (*(primes + (num >> 6)) & (1ULL << (num % 64))) {
+    if (*(primes + (num >> 6)) & (UINT64_C(1) << (num % 64))) {
       if (num + 1 >= start) {
         ++count;
         if (!opt_short) {
-          printf("%llu\n", num + 1);
+          printf("%" PRIu64 "\n", num + 1);
         }
       }
       for (i = (num + 1) * (num + 1) - 1; i < stop; i += num + 1) {
-        *(primes + (i >> 6)) &= ~(1ULL << (i % 64));
+        *(primes + (i >> 6)) &= ~(UINT64_C(1) << (i % 64));
       }
     }
   }
@@ -66,10 +67,10 @@ uint64_t prime_range(const uint64_t start, const uint64_t stop,
   }
 
   for ( ; num < stop - 1; ++num) {
-    if (*(primes + (num >> 6)) & (1ULL << (num % 64))) {
+    if (*(primes + (num >> 6)) & (UINT64_C(1) << (num % 64))) {
       ++count;
       if (!opt_short) {
-        printf("%llu\n", num + 1);
+        printf("%" PRIu64 "\n", num + 1);
       }
     }
   }
