@@ -1,8 +1,8 @@
 // Nikita Kouevda
-// 2014/12/18
+// 2014/12/22
 
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef PRIME_MAIN_H_
+#define PRIME_MAIN_H_
 
 #include <stdbool.h>
 
@@ -12,4 +12,4 @@ int check(int argc, char *argv[], const int optind, const bool opt_short);
 
 int range(int argc, char *argv[], const int optind, const bool opt_short);
 
-#endif
+#endif  // PRIME_MAIN_H_

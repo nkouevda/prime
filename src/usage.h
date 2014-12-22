@@ -1,8 +1,8 @@
 // Nikita Kouevda
-// 2014/12/17
+// 2014/12/22
 
-#ifndef USAGE_H
-#define USAGE_H
+#ifndef PRIME_USAGE_H_
+#define PRIME_USAGE_H_
 
 #include <stdio.h>
 
@@ -10,4 +10,4 @@ void usage(FILE *stream, const char *prog);
 
 void help(const char *prog);
 
-#endif
+#endif // PRIME_USAGE_H_
