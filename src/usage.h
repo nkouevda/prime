@@ -6,8 +6,12 @@
 
 #include <stdio.h>
 
-void usage(FILE *stream, const char *prog);
+#define PROGRAM_NAME "prime"
 
-void help(const char *prog);
+void usage(FILE *stream);
+
+void error(const char *format, ...);
+
+void help();
 
 #endif // PRIME_USAGE_H_

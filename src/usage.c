@@ -1,24 +1,39 @@
 // Nikita Kouevda
-// 2014/12/21
+// 2014/12/22
 
+#include <stdarg.h>
 #include <stdio.h>
 
-void usage(FILE *stream, const char *prog) {
-  fprintf(stream, "usage: %s [-h|--help]\n", prog);
-  fprintf(stream, "       %s [-s|--short] [--] <num>...\n", prog);
-  fprintf(stream, "       %s [-s|--short] -r|--range [<start>] <stop>\n", prog);
+#include "usage.h"
+
+void usage(FILE *stream) {
+  fputs("\
+usage: " PROGRAM_NAME " [-h|--help]\n\
+       " PROGRAM_NAME " [-s|--short] [--] <num>...\n\
+       " PROGRAM_NAME " [-s|--short] -r|--range [<start>] <stop>\n\
+", stream);
 }
 
-void help(const char *prog) {
-  printf("%s - Prime checker and finder\n\n", prog);
-  usage(stdout, prog);
+void error(const char *format, ...) {
+  va_list args;
+
+  fputs(PROGRAM_NAME ": ", stderr);
+  va_start(args, format);
+  vfprintf(stderr, format, args);
+  va_end(args);
+  usage(stderr);
+}
+
+void help() {
+  fputs(PROGRAM_NAME " - Prime checker and finder\n\n", stdout);
+  usage(stdout);
   fputs("\
 \n\
-prime [-h|--help]\n\
+" PROGRAM_NAME " [-h|--help]\n\
 \n\
     Show this help message and exit.\n\
 \n\
-prime [-s|--short] [--] <num>...\n\
+" PROGRAM_NAME " [-s|--short] [--] <num>...\n\
 \n\
     Print each prime number of the given <num>s. If --short is specified,\n\
     instead of printing each prime number, output a summary in the following\n\
@@ -26,7 +41,7 @@ prime [-s|--short] [--] <num>...\n\
 \n\
         P of T (P/T%%)\n\
 \n\
-prime [-s|--short] -r|--range [<start>] <stop>\n\
+" PROGRAM_NAME " [-s|--short] -r|--range [<start>] <stop>\n\
 \n\
     Print all primes between <start> (inclusive) and <stop> (exclusive). If not\n\
     specified, <start> defaults to 0. If --short is specified, instead of\n\

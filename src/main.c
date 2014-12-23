@@ -1,6 +1,7 @@
 // Nikita Kouevda
 // 2014/12/22
 
+#include <errno.h>
 #include <getopt.h>
 #include <inttypes.h>
 #include <stdbool.h>
@@ -28,7 +29,7 @@ int main(int argc, char *argv[]) {
   while ((opt = getopt_long(argc, argv, "hrs", long_options, NULL)) != -1) {
     switch (opt) {
       case 'h':
-        help(argv[0]);
+        help();
         return 0;
       case 'r':
         opt_range = true;
@@ -36,15 +37,14 @@ int main(int argc, char *argv[]) {
       case 's':
         opt_short = true;
         break;
-      case '?':
-        usage(stderr, argv[0]);
+      default:
+        usage(stderr);
         return 1;
     }
   }
 
   if (optind >= argc) {
-    fprintf(stderr, "%s: missing arguments\n", argv[0]);
-    usage(stderr, argv[0]);
+    error("missing arguments\n");
     return 1;
   }
 
@@ -61,8 +61,10 @@ int check(int argc, char *argv[], const int optind, const bool opt_short) {
   for (i = optind; i < argc; ++i) {
     num = strtoull(argv[i], &endptr, 10);
     if (*endptr != '\0') {
-      fprintf(stderr, "%s: illegal argument: %s\n", argv[0], argv[i]);
-      usage(stderr, argv[0]);
+      error("illegal argument: %s\n", argv[i]);
+      return 1;
+    } else if (errno == ERANGE) {
+      error("out of range: %s\n", argv[i]);
       return 1;
     }
 
@@ -90,15 +92,16 @@ int range(int argc, char *argv[], const int optind, const bool opt_short) {
   uint64_t count;
 
   if (optind + 2 < argc) {
-    fprintf(stderr, "%s: too many arguments\n", argv[0]);
-    usage(stderr, argv[0]);
+    error("too many arguments\n");
     return 1;
   }
 
   start = strtoull(argv[optind], &endptr, 10);
   if (*endptr != '\0') {
-    fprintf(stderr, "%s: illegal argument: %s\n", argv[0], argv[optind]);
-    usage(stderr, argv[0]);
+    error("illegal argument: %s\n", argv[optind]);
+    return 1;
+  } else if (errno == ERANGE) {
+    error("out of range: %s\n", argv[optind]);
     return 1;
   }
 
@@ -108,19 +111,20 @@ int range(int argc, char *argv[], const int optind, const bool opt_short) {
   } else {
     stop = strtoull(argv[optind + 1], &endptr, 10);
     if (*endptr != '\0') {
-      fprintf(stderr, "%s: illegal argument: %s\n", argv[0], argv[optind + 1]);
-      usage(stderr, argv[0]);
+      error("illegal argument: %s\n", argv[optind + 1]);
+      return 1;
+    } else if (errno == ERANGE) {
+      error("out of range: %s\n", argv[optind + 1]);
       return 1;
     } else if (start > stop) {
-      fprintf(stderr, "%s: start must be <= stop\n", argv[0]);
-      usage(stderr, argv[0]);
+      error("start must be <= stop\n");
       return 1;
     }
   }
 
   count = prime_range(start, stop, opt_short);
   if (count == UINT64_MAX) {
-    fprintf(stderr, "%s: unexpected error\n", argv[0]);
+    error("unexpected error\n");
     return 1;
   }
 
