@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/12/22
+// 2014/12/23
 
 #include <errno.h>
 #include <getopt.h>
@@ -8,7 +8,6 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #include "main.h"
 #include "prime.h"

@@ -1,5 +1,5 @@
 // Nikita Kouevda
-// 2014/12/22
+// 2014/12/23
 
 #ifndef PRIME_USAGE_H_
 #define PRIME_USAGE_H_
@@ -14,4 +14,4 @@ void error(const char *format, ...);
 
 void help();
 
-#endif // PRIME_USAGE_H_
+#endif  // PRIME_USAGE_H_
