@@ -1,6 +1,3 @@
-// Nikita Kouevda
-// 2014/12/22
-
 #include <inttypes.h>
 #include <math.h>
 #include <stdbool.h>

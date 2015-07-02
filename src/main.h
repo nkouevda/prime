@@ -1,6 +1,3 @@
-// Nikita Kouevda
-// 2014/12/23
-
 #ifndef PRIME_MAIN_H_
 #define PRIME_MAIN_H_
 

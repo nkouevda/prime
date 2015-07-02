@@ -1,6 +1,3 @@
-// Nikita Kouevda
-// 2014/12/22
-
 #include <stdarg.h>
 #include <stdio.h>
 

@@ -1,6 +1,3 @@
-# Nikita Kouevda
-# 2014/12/22
-
 # Compiler and options
 CC := gcc
 CFLAGS := -std=c99 -Wall -Wextra -Werror -pedantic-errors -O2

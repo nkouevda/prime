@@ -1,6 +1,3 @@
-<!-- Nikita Kouevda -->
-<!-- 2014/12/19 -->
-
 # prime
 
 Prime checker and finder.

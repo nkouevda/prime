@@ -1,6 +1,3 @@
-// Nikita Kouevda
-// 2014/12/23
-
 #ifndef PRIME_USAGE_H_
 #define PRIME_USAGE_H_
 
