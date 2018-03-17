@@ -1,23 +1,21 @@
-# Compiler and options
 CC := gcc
 CFLAGS := -std=c99 -Wall -Wextra -Werror -pedantic-errors -O2
 
-# Sources and targets
-SOURCES := $(wildcard src/*.c)
-BIN_DIR := bin
-BIN_NAME := prime
+srcdir := src
+sources := $(wildcard $(srcdir)/*.c)
+bindir := bin
+prime := $(bindir)/prime
 
-# Phony targets
 .PHONY: all test clean
 
-all: $(BIN_DIR)/$(BIN_NAME)
+all: $(prime)
 
-$(BIN_DIR)/$(BIN_NAME): $(SOURCES)
-	mkdir -p $(BIN_DIR)
-	$(CC) $(CFLAGS) -o $@ $(SOURCES)
+$(prime): $(sources)
+	mkdir -p $(bindir)
+	$(CC) $(CFLAGS) -o $@ $(sources)
 
 test: all
 	test/run_tests
 
 clean:
-	rm -rf $(BIN_DIR)
+	rm -rf $(bindir)
