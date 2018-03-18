@@ -76,4 +76,4 @@ Print a summary about the given range (`start` defaults to `0`):
 
 ## License
 
-Licensed under the [MIT License](http://www.opensource.org/licenses/MIT).
+[MIT License](LICENSE.txt)
