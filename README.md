@@ -4,15 +4,15 @@ Prime checker and finder.
 
 ## Compilation
 
-To compile:
+Compile:
 
     make
 
-To test:
+Test:
 
     make test
 
-To clean up:
+Clean up:
 
     make clean
 

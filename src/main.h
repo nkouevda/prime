@@ -8,8 +8,8 @@ static const struct option long_options[];
 
 int main(int argc, char *argv[]);
 
-int check(int argc, char *argv[], const int optind, const bool opt_short);
+int check(int argc, char *argv[], const bool opt_short);
 
-int range(int argc, char *argv[], const int optind, const bool opt_short);
+int range(int argc, char *argv[], const bool opt_short);
 
 #endif  // PRIME_MAIN_H_

@@ -9,6 +9,6 @@ void usage(FILE *stream);
 
 void error(const char *format, ...);
 
-void help();
+void help(void);
 
 #endif  // PRIME_USAGE_H_

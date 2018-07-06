@@ -1,5 +1,5 @@
 CC := gcc
-CFLAGS := -std=c99 -Wall -Wextra -Werror -pedantic-errors -O2
+CFLAGS := -std=c99 -Wall -Wextra -Wpedantic -Werror -O2
 
 srcdir := src
 sources := $(wildcard $(srcdir)/*.c)

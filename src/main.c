@@ -44,10 +44,10 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  return (opt_range ? range : check)(argc, argv, optind, opt_short);
+  return (opt_range ? range : check)(argc, argv, opt_short);
 }
 
-int check(int argc, char *argv[], const int optind, const bool opt_short) {
+int check(int argc, char *argv[], const bool opt_short) {
   int i;
   char *endptr;
   uint64_t num;
@@ -73,14 +73,14 @@ int check(int argc, char *argv[], const int optind, const bool opt_short) {
   }
 
   if (opt_short) {
-    total = argc - optind;
+    total = (uint64_t) (argc - optind);
     printf("%" PRIu64 " of %" PRIu64 " (%f%%)\n",
            count, total, 100.0 * count / total);
   }
   return 0;
 }
 
-int range(int argc, char *argv[], const int optind, const bool opt_short) {
+int range(int argc, char *argv[], const bool opt_short) {
   char *endptr;
   uint64_t start;
   uint64_t stop;

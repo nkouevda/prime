@@ -9,7 +9,7 @@
 #include "prime.h"
 
 bool is_prime(const uint64_t num) {
-  const uint64_t num_sqrt = sqrt(num);
+  const uint64_t num_sqrt = (uint64_t) sqrt(num);
   uint64_t i;
 
   if (num == 2 || num == 3) {
@@ -29,7 +29,7 @@ bool is_prime(const uint64_t num) {
 
 uint64_t prime_range(const uint64_t start, const uint64_t stop,
                      const bool opt_short) {
-  const uint64_t stop_sqrt = sqrt(stop);
+  const uint64_t stop_sqrt = (uint64_t) sqrt(stop);
   uint64_t *primes;
   // Smallest x divisible by 8 such that 8 * x >= stop
   uint64_t primes_size = (((stop - 1) | 63) + 1) >> 3;
