@@ -21,7 +21,7 @@ void error(const char *format, ...) {
   usage(stderr);
 }
 
-void help() {
+void help(void) {
   fputs(PROGRAM_NAME " - Prime checker and finder\n\n", stdout);
   usage(stdout);
   fputs("\
