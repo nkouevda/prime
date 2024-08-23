@@ -5,8 +5,9 @@ srcdir := src
 sources := $(wildcard $(srcdir)/*.c)
 bindir := bin
 prime := $(bindir)/prime
+destdir := $(HOME)/$(bindir)
 
-.PHONY: all test clean
+.PHONY: all test install clean
 
 all: $(prime)
 
@@ -16,6 +17,10 @@ $(prime): $(sources)
 
 test: all
 	test/run_tests
+
+install: all
+	mkdir -p $(destdir)
+	cp $(prime) $(destdir)
 
 clean:
 	rm -rf $(bindir)
