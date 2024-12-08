@@ -36,7 +36,7 @@ void help(void) {
     instead of printing each prime number, output a summary in the following\n\
     format, where P is the number of primes and T is the number of <num>s:\n\
 \n\
-        P of T (P/T%%)\n\
+        P of T (P/T%)\n\
 \n\
 " PROGRAM_NAME " [-s|--short] -r|--range [<start>] <stop>\n\
 \n\
@@ -45,6 +45,6 @@ void help(void) {
     printing each prime number, output a summary in the following format, where\n\
     P is the number of primes and T is the number of numbers (<stop> - <start>):\n\
 \n\
-        P of T (P/T%%) in [<start>, <stop>)\n\
+        P of T (P/T%) in [<start>, <stop>)\n\
 ", stdout);
 }
